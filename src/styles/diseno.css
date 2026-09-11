@@ -1,0 +1,273 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 10px;
+  background-color: #f4f4f9;
+  color: #333;
+}
+.header-acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.descripcion-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1; 
+  min-width: 150px;
+  max-width: 350px;
+}
+.fecha-contenedor {
+  font-size: 16px;
+  font-weight: bold;
+}
+.fecha-contenedor input {
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#inputBuscar {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 160px;
+  box-sizing: border-box;
+}
+#inputBuscar:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.btn-top {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1px solid #333;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.tabla-responsiva {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #999;
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+th,
+td {
+  border: 1px solid #999;
+  padding: 0; 
+  text-align: center;
+  font-size: 14px;
+  height: 38px;
+}
+th {
+  background-color: #e9ecef;
+  font-weight: bold;
+  padding: 8px 4px;
+}
+.col-nombre {
+  text-align: left;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  width: 140px;
+  padding-left: 8px;
+}
+.celda-peso {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  background: transparent;
+  box-sizing: border-box;
+  outline: none;
+}
+.celda-peso:focus {
+  background-color: #e8f5e9;
+  box-shadow: inset 0 0 0 2px #28a745;
+}
+.col-total-trabajador {
+  font-weight: bold;
+  background-color: #fff3cd;
+  width: 70px;
+}
+.col-boton-mas {
+  width: 50px;
+  background-color: #f8f9fa;
+}
+.panel-totales {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px;
+}
+.info-pago {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 8px;
+}
+.gran-total {
+  font-size: 22px;
+  font-weight: bold;
+  color: #dc3545;
+  background: #ffebeb;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid #fda4af;
+  margin-top: 10px;
+}
+.btn-mas-celda {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 24px;
+  padding: 0;
+}
+.btn-mas-celda:active {
+  background-color: #0056b3;
+}
+
+.btn-guardar-jornada {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.15);
+}
+.btn-guardar-jornada:active {
+  background-color: #1e7e34;
+}
+
+/* CONTENEDOR TOTAL Y DESCARGA */
+.contenedor-total-descarga {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.total-reducido {
+  margin-top: 0;
+  min-width: 250px;
+  max-width: 450px;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+.btn-descargar-foto {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.15);
+  height: 50px;
+  box-sizing: border-box;
+}
+.btn-descargar-foto:hover { background-color: #0056b3; }
+.btn-descargar-foto:active { transform: scale(0.98); }
+
+/* ESTILOS ADICIONALES PARA EL MODAL INTEGRADO EN REACT */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  z-index: 100;
+}
+.modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modal-botones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .header-acciones {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .descripcion-input {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .fecha-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fecha-contenedor input {
+    flex: 1;
+    margin-left: 10px;
+    max-width: 200px;
+  }
+  #inputBuscar { width: 100%; }
+  .btn-top { width: 100%; padding: 12px; }
+  th, td { height: 44px; font-size: 15px; }
+  .celda-peso { font-size: 15px; }
+}
