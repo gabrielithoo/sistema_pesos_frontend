@@ -21,7 +21,7 @@ export function useSistemaPesos() {
   const [busqueda, setBusqueda] = useState<string>('');
   
   const [precioPorKilo, setPrecioPorKilo] = useState<string>(() => {
-    return localStorage.getItem('pesos_precio') || '0.00';
+    return localStorage.getItem('pesos_precio') || '';
   });
 
   // --- 2. Auto-guardado en LocalStorage ---
@@ -65,7 +65,7 @@ export function useSistemaPesos() {
   const reiniciarCosecha = () => {
     setTrabajadores([]);
     setNumColumnas(1);
-    setPrecioPorKilo('0.00');
+    setPrecioPorKilo('');
     const hoy = new Date().toISOString().split('T')[0];
     setFecha(hoy);
   };

@@ -23,7 +23,7 @@ export default function TablaPesos() {
   const manejarDescarga = () => {
     exportarTablaComoImagen({
       idElemento: 'tablaExcel',
-      descripcion: 'General', // Mandamos un valor fijo por defecto al utilitario
+      descripcion: 'General', 
       fecha
     });
   };
@@ -51,7 +51,7 @@ export default function TablaPesos() {
       input: "text",
       inputLabel: "Ingrese el nombre del nuevo trabajador:",
       inputPlaceholder: "Ej: Juan Pérez",
-      inputAttributes: {maxlength: "15"},
+      inputAttributes: { maxlength: "15" },
       showCancelButton: true,
       confirmButtonColor: "#28a745",
       cancelButtonColor: "#dc3545",
@@ -67,6 +67,19 @@ export default function TablaPesos() {
     if (nombre) {
       agregarTrabajador(nombre);
     }
+  };
+
+  const manejarAgregarColumna = () => {
+    if (numColumnas >= 15) {
+      Swal.fire({
+        title: 'Límite alcanzado',
+        text: 'No puedes agregar más de 15 columnas de peso.',
+        icon: 'warning',
+        confirmButtonColor: '#28a745'
+      });
+      return;
+    }
+    agregarColumna();
   };
 
   return (
@@ -92,7 +105,7 @@ export default function TablaPesos() {
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div className="contenedor-botones-top">
           <button className="btn-top" onClick={lanzarModalNuevoTrabajador}>agregar</button>
           <button className="btn-top" onClick={manejarDescarga}>📷 descargar</button>
         </div>
@@ -105,8 +118,8 @@ export default function TablaPesos() {
             <tr>
               <th className="col-nombre">nombres</th>
               <th colSpan={numColumnas}>datos (pesos kg)</th>
-              <th className="col-boton-mas" style={{ width: '50px' }}>
-                <button className="btn-mas-celda" onClick={agregarColumna}>+</button>
+              <th className="col-boton-mas col-mas-cabecera">
+                <button className="btn-mas-celda" onClick={manejarAgregarColumna}>+</button>
               </th>
               <th>Total</th>
             </tr>
@@ -143,7 +156,7 @@ export default function TablaPesos() {
                   ))}
                   
                   <td className="col-boton-mas">
-                    <button className="btn-mas-celda" onClick={agregarColumna}>+</button>
+                    <button className="btn-mas-celda" onClick={manejarAgregarColumna}>+</button>
                   </td>
 
                   <td className="col-total-trabajador">
@@ -157,19 +170,19 @@ export default function TablaPesos() {
       </div>
 
       {/* 💡 TOTAL GENERAL */}
-      <div className="contenedor-total-descarga" style={{ justifyContent: 'center' }}>
-        <div className="gran-total total-reducido" style={{ maxWidth: '100%' }}>
+      <div className="contenedor-total-descarga">
+        <div className="gran-total total-reducido">
           TOTAL GENERAL: <span>{Math.round(totalGeneralKilos)}</span> KG
         </div>
       </div>
 
       {/* 💡 PANEL DE PRECIOS Y DINERO (S/) */}
-      <div className="panel-totales" style={{ marginBottom: '20px', padding: '15px' }}>
+      <div className="panel-totales">
         <div className="info-pago">
           <span>Precio por Kilo (S/):</span>
           <input
             type="text"
-            value={precioPorKilo}
+            value={precioPorKilo === '0.00' ? '' : precioPorKilo}
             onChange={(e) => {
               const valorFiltrado = e.target.value.replace(/[^0-9.]/g, '');
               if (valorFiltrado.length <= 5) {
@@ -177,24 +190,17 @@ export default function TablaPesos() {
               }
             }}
             placeholder="Ej: 1.20"
-            style={{
-              width: '100px',
-              padding: '6px',
-              fontSize: '16px',
-              textAlign: 'right',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-            }}
+            className="btn-pago-input"
           />
         </div>
 
-        <div className="info-pago" style={{ color: '#28a745', marginTop: '10px' }}>
+        <div className="info-pago total-dinero-verde">
           <span>Total a Pagar (Dinero):</span>
           <span>S/ <span>{totalGeneralDinero.toFixed(2)}</span></span>
         </div>
       </div>
 
-      <div style={{ marginTop: '15px', marginBottom: '30px' }}>
+      <div className="contenedor-nueva-cosecha">
         <button className="btn-guardar-jornada" onClick={confirmarNuevaCosecha}>
           [Nueva cosecha]
         </button>
