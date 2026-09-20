@@ -51,6 +51,7 @@ export default function TablaPesos() {
       input: "text",
       inputLabel: "Ingrese el nombre del nuevo trabajador:",
       inputPlaceholder: "Ej: Juan Pérez",
+      inputAttributes: {maxlength: "15"},
       showCancelButton: true,
       confirmButtonColor: "#28a745",
       cancelButtonColor: "#dc3545",
@@ -70,7 +71,7 @@ export default function TablaPesos() {
 
   return (
     <div>
-      {/* 💡 HEADER DE ACCIONES OPTIMIZADO (Sin descripción) */}
+      {/* HEADER DE ACCIONES OPTIMIZADO */}
       <div className="header-acciones">
         <div className="fecha-contenedor">
           Fecha:
