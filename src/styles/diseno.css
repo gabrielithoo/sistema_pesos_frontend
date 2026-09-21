@@ -18,7 +18,7 @@ body {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  flex: 1; 
+  flex: 1;
   min-width: 150px;
   max-width: 350px;
 }
@@ -73,7 +73,7 @@ table {
 th,
 td {
   border: 1px solid #999;
-  padding: 0; 
+  padding: 0;
   text-align: center;
   font-size: 14px;
   height: 38px;
@@ -207,13 +207,20 @@ th {
   height: 50px;
   box-sizing: border-box;
 }
-.btn-descargar-foto:hover { background-color: #0056b3; }
-.btn-descargar-foto:active { transform: scale(0.98); }
+.btn-descargar-foto:hover {
+  background-color: #0056b3;
+}
+.btn-descargar-foto:active {
+  transform: scale(0.98);
+}
 
 /* ESTILOS ADICIONALES PARA EL MODAL INTEGRADO EN REACT */
 .modal-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -228,7 +235,7 @@ th {
   width: 100%;
   max-width: 320px;
   border: 1px solid #ccc;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 .modal-input {
   width: 100%;
@@ -266,52 +273,62 @@ th {
     margin-left: 10px;
     max-width: 200px;
   }
-  #inputBuscar { width: 100%; }
-  .btn-top { width: 100%; padding: 12px; }
-  th, td { height: 44px; font-size: 15px; }
-  .celda-peso { font-size: 15px; }
+  #inputBuscar {
+    width: 100%;
   }
+  .btn-top {
+    width: 100%;
+    padding: 12px;
+  }
+  th,
+  td {
+    height: 44px;
+    font-size: 15px;
+  }
+  .celda-peso {
+    font-size: 15px;
+  }
+}
 
-  /* --- NUEVOS ESTILOS MUDADOS DESDE EL COMPONENTE --- */
+/* --- NUEVOS ESTILOS MUDADOS DESDE EL COMPONENTE --- */
 
-  .contenedor-botones-top {
+.contenedor-botones-top {
   display: flex;
   gap: 10px;
-  }
+}
 
-  .col-mas-cabecera {
+.col-mas-cabecera {
   width: 50px;
-  }
+}
 
-  .total-dinero-verde {
+.total-dinero-verde {
   color: #28a745;
   margin-top: 10px;
-  }
+}
 
-  .contenedor-nueva-cosecha {
+.contenedor-nueva-cosecha {
   margin-top: 15px;
   margin-bottom: 30px;
-  }
+}
 
-  .btn-pago-input {
+.btn-pago-input {
   width: 100px;
   padding: 6px;
   font-size: 16px;
   text-align: right;
   border: 1px solid #ccc;
   border-radius: 4px;
-  }
+}
 
-  /* Modificaciones de ordenamiento sobre clases existentes */
-  .contenedor-total-descarga {
+/* Modificaciones de ordenamiento sobre clases existentes */
+.contenedor-total-descarga {
   justify-content: center;
-  }
+}
 
-  .total-reducido {
+.total-reducido {
   max-width: 100%;
-  }
+}
 
-  .panel-totales {
+.panel-totales {
   margin-bottom: 20px;
-  }
-
+}

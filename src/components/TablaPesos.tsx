@@ -1,6 +1,6 @@
-import Swal from 'sweetalert2';
-import { useSistemaPesos } from '../hooks/useSistemaPesos';
-import { exportarTablaComoImagen } from '../utils/exportarImagen';
+import Swal from "sweetalert2";
+import { useSistemaPesos } from "../hooks/useSistemaPesos";
+import { exportarTablaComoImagen } from "../utils/exportarImagen";
 
 export default function TablaPesos() {
   const {
@@ -17,27 +17,27 @@ export default function TablaPesos() {
     agregarTrabajador,
     reiniciarCosecha,
     totalGeneralKilos,
-    totalGeneralDinero
+    totalGeneralDinero,
   } = useSistemaPesos();
 
   const manejarDescarga = () => {
     exportarTablaComoImagen({
-      idElemento: 'tablaExcel',
-      descripcion: 'General', 
-      fecha
+      idElemento: "tablaExcel",
+      descripcion: "General",
+      fecha,
     });
   };
 
   const confirmarNuevaCosecha = () => {
     Swal.fire({
-      title: '¿Empezar nueva cosecha?',
+      title: "¿Empezar nueva cosecha?",
       text: "Se borrarán todos los registros actuales de la pantalla.",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#28a745',
-      cancelButtonColor: '#dc3545',
-      confirmButtonText: 'Sí, limpiar todo',
-      cancelButtonText: 'Cancelar'
+      confirmButtonColor: "#28a745",
+      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Sí, limpiar todo",
+      cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
         reiniciarCosecha();
@@ -72,10 +72,10 @@ export default function TablaPesos() {
   const manejarAgregarColumna = () => {
     if (numColumnas >= 15) {
       Swal.fire({
-        title: 'Límite alcanzado',
-        text: 'No puedes agregar más de 15 columnas de peso.',
-        icon: 'warning',
-        confirmButtonColor: '#28a745'
+        title: "Límite alcanzado",
+        text: "No puedes agregar más de 15 columnas de peso.",
+        icon: "warning",
+        confirmButtonColor: "#28a745",
       });
       return;
     }
@@ -88,8 +88,8 @@ export default function TablaPesos() {
       <div className="header-acciones">
         <div className="fecha-contenedor">
           Fecha:
-          <input 
-            type="date" 
+          <input
+            type="date"
             value={fecha}
             onChange={(e) => setFecha(e.target.value)}
           />
@@ -106,8 +106,12 @@ export default function TablaPesos() {
         </div>
 
         <div className="contenedor-botones-top">
-          <button className="btn-top" onClick={lanzarModalNuevoTrabajador}>agregar</button>
-          <button className="btn-top" onClick={manejarDescarga}>📷 descargar</button>
+          <button className="btn-top" onClick={lanzarModalNuevoTrabajador}>
+            agregar
+          </button>
+          <button className="btn-top" onClick={manejarDescarga}>
+            📷 descargar
+          </button>
         </div>
       </div>
 
@@ -119,14 +123,21 @@ export default function TablaPesos() {
               <th className="col-nombre">nombres</th>
               <th colSpan={numColumnas}>datos (pesos kg)</th>
               <th className="col-boton-mas col-mas-cabecera">
-                <button className="btn-mas-celda" onClick={manejarAgregarColumna}>+</button>
+                <button
+                  className="btn-mas-celda"
+                  onClick={manejarAgregarColumna}
+                >
+                  +
+                </button>
               </th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
             {trabajadores.map((t) => {
-              const totalTrabajador = Math.round(t.pesos.reduce((s, p) => s + p, 0));
+              const totalTrabajador = Math.round(
+                t.pesos.reduce((s, p) => s + p, 0),
+              );
 
               return (
                 <tr key={t.id}>
@@ -138,30 +149,40 @@ export default function TablaPesos() {
                         inputMode="numeric"
                         pattern="[0-9]*"
                         className="celda-peso"
-                        value={t.pesos[indexCol] === 0 ? '' : t.pesos[indexCol]}
+                        value={t.pesos[indexCol] === 0 ? "" : t.pesos[indexCol]}
                         onChange={(e) => {
                           const textoOriginal = e.target.value;
-                          if (textoOriginal === '') {
+                          if (textoOriginal === "") {
                             actualizarPeso(t.id, indexCol, 0);
                             return;
                           }
-                          const textoSanitizado = textoOriginal.replace(/[^0-9]/g, '');
-                          if (textoSanitizado === '') return;
+                          const textoSanitizado = textoOriginal.replace(
+                            /[^0-9]/g,
+                            "",
+                          );
+                          if (textoSanitizado === "") return;
                           if (textoSanitizado.length > 4) return;
 
-                          actualizarPeso(t.id, indexCol, parseInt(textoSanitizado, 10));
+                          actualizarPeso(
+                            t.id,
+                            indexCol,
+                            parseInt(textoSanitizado, 10),
+                          );
                         }}
                       />
                     </td>
                   ))}
-                  
+
                   <td className="col-boton-mas">
-                    <button className="btn-mas-celda" onClick={manejarAgregarColumna}>+</button>
+                    <button
+                      className="btn-mas-celda"
+                      onClick={manejarAgregarColumna}
+                    >
+                      +
+                    </button>
                   </td>
 
-                  <td className="col-total-trabajador">
-                    {totalTrabajador}
-                  </td>
+                  <td className="col-total-trabajador">{totalTrabajador}</td>
                 </tr>
               );
             })}
@@ -182,9 +203,9 @@ export default function TablaPesos() {
           <span>Precio por Kilo (S/):</span>
           <input
             type="text"
-            value={precioPorKilo === '0.00' ? '' : precioPorKilo}
+            value={precioPorKilo === "0.00" ? "" : precioPorKilo}
             onChange={(e) => {
-              const valorFiltrado = e.target.value.replace(/[^0-9.]/g, '');
+              const valorFiltrado = e.target.value.replace(/[^0-9.]/g, "");
               if (valorFiltrado.length <= 5) {
                 setPrecioPorKilo(valorFiltrado);
               }
@@ -196,7 +217,9 @@ export default function TablaPesos() {
 
         <div className="info-pago total-dinero-verde">
           <span>Total a Pagar (Dinero):</span>
-          <span>S/ <span>{totalGeneralDinero.toFixed(2)}</span></span>
+          <span>
+            S/ <span>{totalGeneralDinero.toFixed(2)}</span>
+          </span>
         </div>
       </div>
 
