@@ -29,58 +29,59 @@ export default function TablaPesos() {
   };
 
   const confirmarNuevaCosecha = () => {
-    Swal.fire({
-      title: "¿Empezar nueva cosecha?",
-      text: "Se borrarán todos los registros actuales de la pantalla.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#28a745",
-      cancelButtonColor: "#dc3545",
-      confirmButtonText: "Sí, limpiar todo",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        reiniciarCosecha();
-      }
-    });
-  };
+  Swal.fire({
+    title: "¿Empezar nueva cosecha?",
+    text: "Se borrarán todos los registros actuales de la pantalla.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, limpiar todo",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      reiniciarCosecha();
+    }
+  });
+};
 
   const lanzarModalNuevoTrabajador = async () => {
-    const { value: nombre } = await Swal.fire({
-      title: "Nuevo Trabajador",
-      input: "text",
-      inputLabel: "Ingrese el nombre del nuevo trabajador:",
-      inputPlaceholder: "Ej: Juan Pérez",
-      inputAttributes: { maxlength: "15" },
-      showCancelButton: true,
-      confirmButtonColor: "#28a745",
-      cancelButtonColor: "#dc3545",
-      confirmButtonText: "Agregar",
-      cancelButtonText: "Cancelar",
-      inputValidator: (value) => {
-        if (!value || value.trim() === "") {
-          return "¡Necesitas escribir un nombre válido!";
-        }
-      },
+  const { value: nombre } = await Swal.fire({
+    title: "Nuevo trabajador",
+    input: "text",
+    inputLabel: "Nombre del trabajador",
+    inputPlaceholder: "Ej: Juan Pérez",
+    inputAttributes: {
+      maxlength: "15",
+      autocapitalize: "words",
+      autocomplete: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Agregar",
+    cancelButtonText: "Cancelar",
+    inputValidator: (value) => {
+      if (!value || value.trim() === "") {
+        return "Escribe un nombre válido.";
+      }
+    },
+  });
+
+  if (nombre) {
+    agregarTrabajador(nombre.trim());
+  }
+};
+  const manejarAgregarColumna = () => {
+  if (numColumnas >= 15) {
+    Swal.fire({
+      title: "Límite alcanzado",
+      text: "No puedes agregar más de 15 columnas de peso.",
+      icon: "warning",
+      confirmButtonText: "Entendido",
     });
 
-    if (nombre) {
-      agregarTrabajador(nombre);
-    }
-  };
+    return;
+  }
 
-  const manejarAgregarColumna = () => {
-    if (numColumnas >= 15) {
-      Swal.fire({
-        title: "Límite alcanzado",
-        text: "No puedes agregar más de 15 columnas de peso.",
-        icon: "warning",
-        confirmButtonColor: "#28a745",
-      });
-      return;
-    }
-    agregarColumna();
-  };
+  agregarColumna();
+};
 
   return (
     <div>
@@ -107,88 +108,111 @@ export default function TablaPesos() {
 
         <div className="contenedor-botones-top">
           <button className="btn-top" onClick={lanzarModalNuevoTrabajador}>
-            agregar
+            Agregar nombre
           </button>
           <button className="btn-top" onClick={manejarDescarga}>
-            📷 descargar
+            📷 Descargar
           </button>
         </div>
       </div>
 
-      {/* 📊 TABLA RESPONSIVA TIPO EXCEL */}
-      <div className="tabla-responsiva">
-        <table id="tablaExcel">
-          <thead>
-            <tr>
-              <th className="col-nombre">nombres</th>
-              <th colSpan={numColumnas}>datos (pesos kg)</th>
-              <th className="col-boton-mas col-mas-cabecera">
-                <button
-                  className="btn-mas-celda"
-                  onClick={manejarAgregarColumna}
-                >
-                  +
-                </button>
-              </th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {trabajadores.map((t) => {
-              const totalTrabajador = Math.round(
-                t.pesos.reduce((s, p) => s + p, 0),
-              );
+{/* TABLA RESPONSIVA */}
+<div className="tabla-responsiva">
+  <table id="tablaExcel">
+    <thead>
+      <tr>
+        <th className="col-nombre">nombres</th>
 
-              return (
-                <tr key={t.id}>
-                  <td className="col-nombre">{t.nombre}</td>
-                  {Array.from({ length: numColumnas }).map((_, indexCol) => (
-                    <td key={indexCol}>
-                      <input
-                        type="text"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        className="celda-peso"
-                        value={t.pesos[indexCol] === 0 ? "" : t.pesos[indexCol]}
-                        onChange={(e) => {
-                          const textoOriginal = e.target.value;
-                          if (textoOriginal === "") {
-                            actualizarPeso(t.id, indexCol, 0);
-                            return;
-                          }
-                          const textoSanitizado = textoOriginal.replace(
-                            /[^0-9]/g,
-                            "",
-                          );
-                          if (textoSanitizado === "") return;
-                          if (textoSanitizado.length > 4) return;
+        <th colSpan={numColumnas}>
+          datos (pesos kg)
+        </th>
 
-                          actualizarPeso(
-                            t.id,
-                            indexCol,
-                            parseInt(textoSanitizado, 10),
-                          );
-                        }}
-                      />
-                    </td>
-                  ))}
+        {/* Primero el total */}
+        <th className="col-total-trabajador">
+          Total
+        </th>
 
-                  <td className="col-boton-mas">
-                    <button
-                      className="btn-mas-celda"
-                      onClick={manejarAgregarColumna}
-                    >
-                      +
-                    </button>
-                  </td>
+        {/* El botón queda al final */}
+        <th className="col-boton-mas col-mas-cabecera no-descargar">
+          <button
+            className="btn-mas-celda"
+            onClick={manejarAgregarColumna}
+          >
+            +
+          </button>
+        </th>
+      </tr>
+    </thead>
 
-                  <td className="col-total-trabajador">{totalTrabajador}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+    <tbody>
+      {trabajadores.map((t) => {
+        const totalTrabajador = Math.round(
+          t.pesos.reduce((s, p) => s + p, 0)
+        );
+
+        return (
+          <tr key={t.id}>
+            <td className="col-nombre">{t.nombre}</td>
+
+            {Array.from({ length: numColumnas }).map((_, indexCol) => (
+              <td key={indexCol}>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  maxLength={4}
+                  className="celda-peso"
+                  value={
+                    t.pesos[indexCol] === 0
+                      ? ""
+                      : t.pesos[indexCol]
+                  }
+                  onChange={(e) => {
+                    const textoOriginal = e.target.value;
+
+                    if (textoOriginal === "") {
+                      actualizarPeso(t.id, indexCol, 0);
+                      return;
+                    }
+
+                    const textoSanitizado =
+                      textoOriginal.replace(/[^0-9]/g, "");
+
+                    if (textoSanitizado === "") return;
+                    if (textoSanitizado.length > 4) return;
+
+                    actualizarPeso(
+                      t.id,
+                      indexCol,
+                      parseInt(textoSanitizado, 10)
+                    );
+                  }}
+                />
+              </td>
+            ))}
+
+            {/* Total del trabajador */}
+            <td className="col-total-trabajador">
+              {totalTrabajador}
+            </td>
+
+            {/* Botón de acción al final */}
+            <td className="col-boton-mas no-descargar">
+              <button
+                className="btn-mas-celda"
+                onClick={manejarAgregarColumna}
+              >
+                +
+              </button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
+
 
       {/* 💡 TOTAL GENERAL */}
       <div className="contenedor-total-descarga">
@@ -225,7 +249,7 @@ export default function TablaPesos() {
 
       <div className="contenedor-nueva-cosecha">
         <button className="btn-guardar-jornada" onClick={confirmarNuevaCosecha}>
-          [Nueva cosecha]
+          [Nuevos Registros] Limpiar todo
         </button>
       </div>
     </div>

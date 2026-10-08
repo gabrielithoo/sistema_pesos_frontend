@@ -1,334 +1,1210 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 10px;
-  background-color: #f4f4f9;
-  color: #333;
+/* =========================================================
+   SISTEMA DE COSECHA - DISEÑO MODERNO
+   Inspirado en interfaces modernas tipo Pet Refuge
+   ========================================================= */
+
+/* ---------- VARIABLES ---------- */
+
+:root {
+  --verde-principal: #145c4a;
+  --verde-hover: #0f4c3d;
+  --verde-claro: #e8f2df;
+  --verde-acento: #cfe8a8;
+
+  --fondo: #f7f8f3;
+  --blanco: #ffffff;
+
+  --texto: #19352e;
+  --texto-secundario: #687872;
+  --texto-suave: #8a9691;
+
+  --borde: #dfe6df;
+  --borde-hover: #c7d4cc;
+
+  --amarillo-suave: #f4f0d9;
+
+  --rojo-suave: #fff0f0;
+  --rojo: #d64545;
+
+  --sombra-suave: 0 4px 16px rgba(25, 53, 46, 0.06);
+  --sombra-hover: 0 8px 24px rgba(25, 53, 46, 0.10);
+
+  --radio: 14px;
+  --radio-pequeno: 10px;
+
+  --transicion: 0.2s ease;
 }
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background-color: var(--fondo);
+  color: var(--texto);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================================
+   CONTENEDOR SUPERIOR
+   ========================================================= */
+
 .header-acciones {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+
+  margin-bottom: 18px;
+
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 14px;
 }
+
+
+/* =========================================================
+   DESCRIPCIÓN
+   ========================================================= */
+
 .descripcion-input {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
   flex: 1;
+
   min-width: 150px;
   max-width: 350px;
-}
-.fecha-contenedor {
-  font-size: 16px;
-  font-weight: bold;
-}
-.fecha-contenedor input {
-  padding: 6px;
+
+  padding: 11px 14px;
+
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+  color: var(--texto);
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  outline: none;
+
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion),
+    transform var(--transicion);
 }
+
+.descripcion-input::placeholder {
+  color: var(--texto-suave);
+}
+
+.descripcion-input:hover {
+  border-color: var(--borde-hover);
+}
+
+.descripcion-input:focus {
+  border-color: var(--verde-principal);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 92, 74, 0.10);
+}
+
+
+/* =========================================================
+   FECHA
+   ========================================================= */
+
+.fecha-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--texto);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fecha-contenedor input {
+  padding: 10px 12px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  color: var(--texto);
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  outline: none;
+
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.fecha-contenedor input:hover {
+  border-color: var(--borde-hover);
+}
+
+.fecha-contenedor input:focus {
+  border-color: var(--verde-principal);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 92, 74, 0.10);
+}
+
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
 
 #inputBuscar {
-  padding: 8px 12px;
+  width: 180px;
+
+  padding: 11px 14px;
+
+  font-family: inherit;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 160px;
-  box-sizing: border-box;
+
+  color: var(--texto);
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  outline: none;
+
+  transition:
+    width var(--transicion),
+    border-color var(--transicion),
+    box-shadow var(--transicion);
 }
+
+#inputBuscar::placeholder {
+  color: var(--texto-suave);
+}
+
+#inputBuscar:hover {
+  border-color: var(--borde-hover);
+}
+
 #inputBuscar:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  width: 210px;
+
+  border-color: var(--verde-principal);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 92, 74, 0.10);
 }
 
-.btn-top {
-  padding: 10px 16px;
-  font-size: 14px;
-  border: 1px solid #333;
-  background: white;
-  cursor: pointer;
-  border-radius: 6px;
-  font-weight: bold;
-}
-.tabla-responsiva {
-  width: 100%;
-  overflow-x: auto;
-  border: 1px solid #999;
-  background: white;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  -webkit-overflow-scrolling: touch;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 700px;
-}
-th,
-td {
-  border: 1px solid #999;
-  padding: 0;
-  text-align: center;
-  font-size: 14px;
-  height: 38px;
-}
-th {
-  background-color: #e9ecef;
-  font-weight: bold;
-  padding: 8px 4px;
-}
-.col-nombre {
-  text-align: left;
-  background-color: #f8f9fa;
-  font-weight: bold;
-  width: 140px;
-  padding-left: 8px;
-}
-.celda-peso {
-  width: 100%;
-  height: 100%;
-  border: none;
-  text-align: center;
-  font-size: 14px;
-  background: transparent;
-  box-sizing: border-box;
-  outline: none;
-}
-.celda-peso:focus {
-  background-color: #e8f5e9;
-  box-shadow: inset 0 0 0 2px #28a745;
-}
-.col-total-trabajador {
-  font-weight: bold;
-  background-color: #fff3cd;
-  width: 70px;
-}
-.col-boton-mas {
-  width: 50px;
-  background-color: #f8f9fa;
-}
-.panel-totales {
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 15px;
-}
-.info-pago {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 8px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px dashed #ddd;
-  padding-bottom: 8px;
-}
-.gran-total {
-  font-size: 22px;
-  font-weight: bold;
-  color: #dc3545;
-  background: #ffebeb;
-  padding: 12px;
-  border-radius: 6px;
-  text-align: center;
-  border: 1px solid #fda4af;
-  margin-top: 10px;
-}
-.btn-mas-celda {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  width: 28px;
-  height: 28px;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  line-height: 24px;
-  padding: 0;
-}
-.btn-mas-celda:active {
-  background-color: #0056b3;
-}
 
-.btn-guardar-jornada {
-  width: 100%;
-  padding: 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 15px;
-  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.15);
-}
-.btn-guardar-jornada:active {
-  background-color: #1e7e34;
-}
-
-/* CONTENEDOR TOTAL Y DESCARGA */
-.contenedor-total-descarga {
-  margin-top: 15px;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-.total-reducido {
-  margin-top: 0;
-  min-width: 250px;
-  max-width: 450px;
-  flex-grow: 1;
-  box-sizing: border-box;
-}
-.btn-descargar-foto {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.15);
-  height: 50px;
-  box-sizing: border-box;
-}
-.btn-descargar-foto:hover {
-  background-color: #0056b3;
-}
-.btn-descargar-foto:active {
-  transform: scale(0.98);
-}
-
-/* ESTILOS ADICIONALES PARA EL MODAL INTEGRADO EN REACT */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  z-index: 100;
-}
-.modal-contenido {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 320px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-.modal-input {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  margin: 12px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-.modal-botones {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-@media (max-width: 600px) {
-  .header-acciones {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-  .descripcion-input {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .fecha-contenedor {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .fecha-contenedor input {
-    flex: 1;
-    margin-left: 10px;
-    max-width: 200px;
-  }
-  #inputBuscar {
-    width: 100%;
-  }
-  .btn-top {
-    width: 100%;
-    padding: 12px;
-  }
-  th,
-  td {
-    height: 44px;
-    font-size: 15px;
-  }
-  .celda-peso {
-    font-size: 15px;
-  }
-}
-
-/* --- NUEVOS ESTILOS MUDADOS DESDE EL COMPONENTE --- */
+/* =========================================================
+   BOTONES SUPERIORES
+   ========================================================= */
 
 .contenedor-botones-top {
   display: flex;
   gap: 10px;
 }
 
-.col-mas-cabecera {
-  width: 50px;
-}
-
-.total-dinero-verde {
-  color: #28a745;
-  margin-top: 10px;
-}
-
-.contenedor-nueva-cosecha {
-  margin-top: 15px;
-  margin-bottom: 30px;
-}
-
-.btn-pago-input {
-  width: 100px;
-  padding: 6px;
-  font-size: 16px;
-  text-align: right;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Modificaciones de ordenamiento sobre clases existentes */
-.contenedor-total-descarga {
+.btn-top {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+
+  min-height: 42px;
+
+  padding: 10px 17px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--texto);
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transicion),
+    border-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
 }
+
+.btn-top:hover {
+  background-color: #f8faf7;
+
+  border-color: var(--borde-hover);
+
+  box-shadow: var(--sombra-suave);
+
+  transform: translateY(-1px);
+}
+
+.btn-top:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.tabla-responsiva {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+
+  border-radius: var(--radio);
+
+  margin-bottom: 18px;
+
+  box-shadow: var(--sombra-suave);
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+}
+
+
+/* Scrollbar */
+
+.tabla-responsiva::-webkit-scrollbar {
+  height: 7px;
+}
+
+.tabla-responsiva::-webkit-scrollbar-track {
+  background: #f1f4f1;
+}
+
+.tabla-responsiva::-webkit-scrollbar-thumb {
+  background: #c7d3cc;
+
+  border-radius: 20px;
+}
+
+.tabla-responsiva::-webkit-scrollbar-thumb:hover {
+  background: #aebeb5;
+}
+
+
+table {
+  width: max-content;
+  min-width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  table-layout: auto;
+}
+
+
+/* =========================================================
+   CELDAS
+   ========================================================= */
+
+th,
+td {
+  height: 44px;
+
+  padding: 8px 10px;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  border-bottom: 1px solid var(--borde);
+}
+
+th {
+  background-color: #f6f8f5;
+
+  color: var(--texto-secundario);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+}
+
+
+/* Primera fila / primera columna */
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Hover de filas */
+
+tbody tr {
+  transition: background-color var(--transicion);
+}
+
+tbody tr:hover {
+  background-color: #fafcf9;
+}
+
+
+/* =========================================================
+   COLUMNA NOMBRE
+   ========================================================= */
+
+.col-nombre {
+  width: 140px;
+  min-width: 140px;
+
+  padding-left: 14px;
+
+  text-align: left;
+
+  background-color: #fbfcfa;
+
+  color: var(--texto);
+
+  font-weight: 600;
+
+  border-right: 1px solid #d7e0da;
+}
+
+/* =========================================================
+   INPUT DE PESO
+   ========================================================= */
+
+.celda-peso {
+  width: 100%;
+  min-width: 58px;
+  height: 100%;
+
+  padding: 8px 6px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  color: var(--texto);
+
+  text-align: center;
+
+  background: transparent;
+
+  border: none;
+  outline: none;
+
+  transition:
+    background-color var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.celda-peso:hover {
+  background-color: #f7faf7;
+}
+
+.celda-peso:focus {
+  background-color: #eef7e9;
+
+  box-shadow:
+    inset 0 0 0 2px var(--verde-principal);
+}
+
+
+/* =========================================================
+   TOTAL POR TRABAJADOR---
+   ========================================================= */
+
+.col-total-trabajador {
+  width: 80px;
+  min-width: 80px;
+
+  padding: 8px;
+
+  color: var(--texto);
+
+  font-weight: 700;
+
+  background-color: #f7f8ef;
+
+  border-left: 1px solid #d7e0da;
+}
+
+/* =========================================================
+   COLUMNA +
+   ========================================================= */
+
+.col-boton-mas {
+  width: 55px;
+  min-width: 55px;
+
+  background-color: #fbfcfa;
+
+  border-left: 1px solid #d7e0da;
+  border-right: 1px solid #d7e0da;
+}
+
+.col-mas-cabecera {
+  width: 55px;
+  min-width: 55px;
+
+  border-left: 1px solid #d7e0da;
+  border-right: 1px solid #d7e0da;
+}
+
+
+/* =========================================================
+   BOTÓN +
+   ========================================================= */
+
+.btn-mas-celda {
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  color: white;
+
+  background-color: var(--verde-principal);
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  line-height: 30px;
+
+  transition:
+    background-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.btn-mas-celda:hover {
+  background-color: var(--verde-hover);
+
+  transform: scale(1.08);
+
+  box-shadow:
+    0 3px 8px rgba(20, 92, 74, 0.20);
+}
+
+.btn-mas-celda:active {
+  transform: scale(0.96);
+  
+}
+
+
+
+/* =========================================================
+   CONTENEDOR TOTAL + DESCARGA
+   ========================================================= */
+
+.contenedor-total-descarga {
+  display: flex;
+
+  justify-content: center;
+  align-items: stretch;
+
+  gap: 14px;
+
+  margin-top: 18px;
+  margin-bottom: 28px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   TOTAL GENERAL
+   ========================================================= */
 
 .total-reducido {
+  flex: 1;
+
+  min-width: 250px;
   max-width: 100%;
+
+  margin-top: 0;
+
+  box-sizing: border-box;
 }
+
+
+/* =========================================================
+   GRAN TOTAL
+   ========================================================= */
+
+.gran-total {
+  padding: 18px 20px;
+
+  margin-top: 0;
+
+  color: var(--verde-principal);
+
+  background-color: var(--verde-claro);
+
+  border: 1px solid #d5e5c7;
+
+  border-radius: var(--radio);
+
+  text-align: center;
+
+  font-size: 22px;
+  font-weight: 750;
+
+  box-shadow: var(--sombra-suave);
+
+  transition:
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.gran-total:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--sombra-hover);
+}
+
+
+/* =========================================================
+   BOTÓN DESCARGAR
+   ========================================================= */
+
+.btn-descargar-foto {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  height: auto;
+
+  min-height: 54px;
+
+  padding: 12px 20px;
+
+  color: var(--verde-principal);
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+
+  border-radius: var(--radio);
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: var(--sombra-suave);
+
+  box-sizing: border-box;
+
+  transition:
+    background-color var(--transicion),
+    border-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.btn-descargar-foto:hover {
+  background-color: #f7faf5;
+
+  border-color: #c7d8ce;
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--sombra-hover);
+}
+
+.btn-descargar-foto:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   PANEL DE TOTALES / PAGO
+   ========================================================= */
 
 .panel-totales {
   margin-bottom: 20px;
+
+  padding: 20px;
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+
+  border-radius: var(--radio);
+
+  box-shadow: var(--sombra-suave);
+
+  transition: box-shadow var(--transicion);
 }
+
+.panel-totales:hover {
+  box-shadow: var(--sombra-hover);
+}
+
+
+/* =========================================================
+   INFORMACIÓN DE PAGO
+   ========================================================= */
+
+.info-pago {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 8px 0;
+
+  padding-bottom: 12px;
+
+  color: var(--texto);
+
+  font-size: 17px;
+
+  font-weight: 650;
+
+  border-bottom: 1px solid var(--borde);
+}
+
+
+/* =========================================================
+   PRECIO POR KILO
+   ========================================================= */
+
+.btn-pago-input {
+  width: 110px;
+
+  padding: 9px 12px;
+
+  color: var(--texto);
+
+  background-color: #fbfcfa;
+
+  border: 1px solid var(--borde);
+
+  border-radius: var(--radio-pequeno);
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  text-align: right;
+
+  outline: none;
+
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.btn-pago-input:hover {
+  border-color: var(--borde-hover);
+}
+
+.btn-pago-input:focus {
+  border-color: var(--verde-principal);
+
+  background-color: white;
+
+  box-shadow:
+    0 0 0 3px rgba(20, 92, 74, 0.10);
+}
+
+
+/* =========================================================
+   TOTAL DINERO
+   ========================================================= */
+
+.total-dinero-verde {
+  margin-top: 10px;
+
+  color: var(--verde-principal);
+
+  font-size: 24px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   NUEVA COSECHA
+   ========================================================= */
+
+.contenedor-nueva-cosecha {
+  margin-top: 18px;
+  margin-bottom: 30px;
+}
+
+.btn-guardar-jornada {
+  width: 100%;
+
+  padding: 15px 20px;
+
+  color: white;
+
+  background-color: var(--verde-principal);
+
+  border: none;
+
+  border-radius: var(--radio);
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 14px rgba(20, 92, 74, 0.18);
+
+  transition:
+    background-color var(--transicion),
+    transform var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.btn-guardar-jornada:hover {
+  background-color: var(--verde-hover);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(20, 92, 74, 0.22);
+}
+
+.btn-guardar-jornada:active {
+  transform: translateY(0);
+
+  box-shadow:
+    0 3px 8px rgba(20, 92, 74, 0.15);
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background-color: rgba(20, 40, 34, 0.45);
+
+  backdrop-filter: blur(4px);
+
+  animation: aparecerOverlay 0.2s ease;
+}
+
+
+/* =========================================================
+   CONTENIDO MODAL
+   ========================================================= */
+
+.modal-contenido {
+  width: 100%;
+
+  max-width: 360px;
+
+  padding: 24px;
+
+  background-color: var(--blanco);
+
+  border: 1px solid var(--borde);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.15);
+
+  animation: aparecerModal 0.25s ease;
+}
+
+
+/* =========================================================
+   INPUT MODAL
+   ========================================================= */
+
+.modal-input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  margin: 12px 0;
+
+  box-sizing: border-box;
+
+  color: var(--texto);
+
+  background-color: #fbfcfa;
+
+  border: 1px solid var(--borde);
+
+  border-radius: var(--radio-pequeno);
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition:
+    border-color var(--transicion),
+    box-shadow var(--transicion);
+}
+
+.modal-input:focus {
+  background-color: white;
+
+  border-color: var(--verde-principal);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 92, 74, 0.10);
+}
+
+
+/* =========================================================
+   BOTONES MODAL
+   ========================================================= */
+
+.modal-botones {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+
+@keyframes aparecerOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aparecerModal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 14px;
+  }
+
+  .header-acciones {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+
+    margin-bottom: 16px;
+  }
+
+
+  /* Fecha */
+
+  .fecha-contenedor {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .fecha-contenedor input {
+    flex: 1;
+
+    max-width: 210px;
+
+    margin-left: 10px;
+  }
+
+
+  /* Descripción */
+
+  .descripcion-input {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+
+  /* Buscador */
+
+  #inputBuscar {
+    width: 100%;
+  }
+
+  #inputBuscar:focus {
+    width: 100%;
+  }
+
+
+  /* Botones */
+
+  .contenedor-botones-top {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+  }
+
+  .btn-top {
+    width: 100%;
+
+    min-height: 46px;
+  }
+
+
+  /* Tabla */
+
+  th,
+  td {
+    height: 44px;
+
+    font-size: 14px;
+  }
+
+  .celda-peso {
+    font-size: 15px;
+  }
+
+
+  /* Total */
+
+  .contenedor-total-descarga {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .total-reducido {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .gran-total {
+    font-size: 21px;
+  }
+
+
+  /* Descargar */
+
+  .btn-descargar-foto {
+    width: 100%;
+  }
+
+
+  /* Panel */
+
+  .panel-totales {
+    padding: 18px;
+  }
+
+  .info-pago {
+    font-size: 16px;
+  }
+
+
+  /* Nueva cosecha */
+
+  .btn-guardar-jornada {
+    min-height: 52px;
+
+    font-size: 16px;
+  }
+
+
+  /* Modal */
+
+  .modal-contenido {
+    padding: 20px;
+
+    border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .contenedor-botones-top {
+    grid-template-columns: 1fr;
+  }
+
+  .fecha-contenedor {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .fecha-contenedor input {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin-left: 0;
+  }
+
+  .gran-total {
+    font-size: 19px;
+  }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(20, 92, 74, 0.18);
+
+  outline-offset: 2px;
+}
+
+/*NUEVAS FUNCIONES*/
+
+td:has(.celda-peso) {
+  min-width: 58px;
+  width: 58px;
+
+  padding: 0;
+
+  border-right: 1px solid #d4ded8;
+}
+
+th:not(:first-child):not(:last-child) {
+  border-right: 1px solid #d4ded8;
+}
+
+/*Adaptacion para celulares*/
+
+@media (max-width: 600px) {
+
+  .tabla-responsiva {
+    overflow-x: auto;
+  }
+
+  table {
+    width: max-content;
+    min-width: max-content;
+  }
+
+  .col-nombre {
+    width: 120px;
+    min-width: 120px;
+  }
+
+  .celda-peso {
+    width: 58px;
+    min-width: 58px;
+
+    font-size: 15px;
+  }
+
+  td:has(.celda-peso) {
+    width: 58px;
+    min-width: 58px;
+  }
+
+  .col-boton-mas {
+    width: 55px;
+    min-width: 55px;
+  }
+
+  .col-total-trabajador {
+    width: 80px;
+    min-width: 80px;
+  }
+}
+

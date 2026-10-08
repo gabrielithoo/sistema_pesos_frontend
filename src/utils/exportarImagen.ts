@@ -32,6 +32,12 @@ export async function exportarTablaComoImagen({
       backgroundColor: "#ffffff", // Asegura el fondo blanco de Excel en la foto
       useCORS: true,
       scale: 2, // Alta definición para pantallas táctiles de celulares
+
+      onclone: (documentoClonado) => {
+      documentoClonado
+      .querySelectorAll(".no-descargar")
+      .forEach((elemento) => elemento.remove());
+      },
     });
 
     const urlImagen = canvas.toDataURL("image/png");
